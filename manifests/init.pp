@@ -377,6 +377,8 @@ class puppet (
   $server              = params_lookup( 'server' ),
   $environment         = params_lookup( 'environment' ),
   $master_environment  = params_lookup( 'master_environment' ),
+  $directory_environments = params_lookup( 'directory_environments' ),
+  $directory_environments_path = params_lookup( 'directory_environments_path' ),
   $allow               = params_lookup( 'allow' ),
   $bindaddress         = params_lookup( 'bindaddress' ),
   $listen              = params_lookup( 'listen' ),
@@ -481,6 +483,7 @@ class puppet (
   ) inherits puppet::params {
 
   $bool_enc_backup=any2bool($enc_backup)
+  $bool_directory_environments=any2bool($directory_environments)
   $bool_listen=any2bool($listen)
   $bool_externalnodes=any2bool($externalnodes)
   $bool_passenger=any2bool($passenger)

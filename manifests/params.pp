@@ -42,6 +42,8 @@ class puppet::params {
     $environment = 'production'
   }
   $master_environment = 'production'
+  $directory_environments = false
+  $directory_environments_path = '$confdir/environments'
 
   $allow = $::domain ? {
     ''      => [ '127.0.0.1' ],

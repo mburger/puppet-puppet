@@ -64,7 +64,7 @@
   localconfig = $vardir/localconfig
 <% if scope.lookupvar('puppet::master_environment') != '' -%>
   environment = <%= scope.lookupvar('puppet::master_environment') %>
-<% end -%> 
+<% end -%>
 
 [master]
 <% if scope.lookupvar('puppet::bindaddress') != '' -%>
@@ -77,16 +77,20 @@
   autosign = <%= scope.lookupvar('puppet::autosign') %>
 <% end -%>
 
+<% if scope.lookupvar('puppet::bool_directory_environments') == true -%>
+  environmentpath = <%= scope.lookupvar('puppet::directory_environments_path') %>
+<% else -%>
   environment = <%= scope.lookupvar('puppet::environment') %>
   manifest    = <%= scope.lookupvar('puppet::manifest_path') %>
   modulepath  = <%= scope.lookupvar('puppet::module_path') %>
+<% end -%>
 
 <% if scope.lookupvar('puppet::dns_alt_names') != '' -%>
   dns_alt_names = <%= scope.lookupvar('puppet::dns_alt_names') %>
 <% end -%>
 
 <% if scope.lookupvar('puppet::inventoryserver') == "localhost" -%>
-  # Local Inventory Service 
+  # Local Inventory Service
   facts_terminus = active_record
 <% else -%>
 <% if scope.lookupvar('puppet::inventoryserver') != "" -%>
@@ -98,7 +102,7 @@
 <% end -%>
 
 <% if scope.lookupvar('puppet::bool_externalnodes') == true -%>
-  # Activate external node classifier 
+  # Activate external node classifier
   external_nodes = <%= scope.lookupvar('puppet::real_external_nodes_script') %>
   node_terminus = exec
 <% end -%>
